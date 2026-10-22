@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LS Serviceprotokoll</title>
 
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-
     <style>
         :root {
             --protocol-primary: #1e293b;
@@ -26,7 +24,6 @@
             --border-radius: 4px;
         }
 
-        /* Base & Page Container */
         .protocol {
             font-family: var(--font-base);
             color: var(--protocol-text);
@@ -46,7 +43,6 @@
             box-sizing: inherit;
         }
 
-        /* Header Module */
         .protocol-header {
             display: flex;
             justify-content: space-between;
@@ -67,6 +63,8 @@
             letter-spacing: 0.05em;
             color: var(--protocol-primary);
             margin: 0;
+            height: 100px;
+            width: 150px;
         }
 
         .protocol-title-wrapper {
@@ -128,23 +126,22 @@
             width: 100%;
             height: 30px;
             border-collapse: none;
+        }
 
-            & th {
-                border: 1px solid var(--protocol-border);
-                padding: var(--spacing-xs);
-                background-color: var(--protocol-surface);
-                color: var(--protocol-primary);
-                font-weight: 700;
-                text-transform: uppercase;
-                font-size: 0.8rem;
-                letter-spacing: 0.025em;
-            }
+        .check-data-table th {
+            border: 1px solid var(--protocol-border);
+            padding: var(--spacing-xs);
+            background-color: var(--protocol-surface);
+            color: var(--protocol-primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.025em;
+        }
 
-            & td {
-                border: 1px solid var(--protocol-border);
-                padding: var(--spacing-xs);
-
-            }
+        .check-data-table td {
+            border: 1px solid var(--protocol-border);
+            padding: var(--spacing-xs);
         }
 
         .new-section-title {
@@ -243,10 +240,10 @@
     <main class="protocol">
         <header class="protocol-header">
             <div class="protocol-branding">
-                <span class="protocol-company-name">ENACO <!-- <img src="{{#OwnCompany.LogoPath}}"> --></span>
+                <img src="/Yuevia_AB_svart_REN_VEKTOR.png" class="protocol-company-name">
             </div>
             <div class="protocol-title-wrapper">
-                <h1 class="protocol-title">Serviceprotokoll LS-System</h1>
+                <span class="protocol-title">Serviceprotokoll LS-System</span>
             </div>
             <!--             <div class="protocol-metadata-top">
                 <span>Utskriftsdatum: 2026-10-22 15:46</span>
@@ -276,19 +273,19 @@
                 <tr>
                     <td>
                         <span class="metadata-label">Nr</span>
-                        <span class="metadata-value">U900031456</span>
+                        <span class="metadata-value">U123456789</span>
                     </td>
                     <td>
                         <span class="metadata-label">Kontaktperson / Telefon</span>
-                        <span class="metadata-value">Namn</span>
+                        <span class="metadata-value">Namn / 070-123 45 67</span>
                     </td>
                     <td>
                         <span class="metadata-label">Namn</span>
-                        <span class="metadata-value">Backup Engineering AB</span>
+                        <span class="metadata-value">Kundnamn</span>
                     </td>
                     <td>
                         <span class="metadata-label">Namn</span>
-                        <span class="metadata-value">Uthyrningsaggregat 370kVA</span>
+                        <span class="metadata-value">Anläggningsnamn</span>
                     </td>
                 </tr>
             </tbody>
