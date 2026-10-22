@@ -1,0 +1,380 @@
+/* ==========================================================================
+ENACO Protocol Modular Stylesheet
+Modular, class-based CSS for semantic HTML inspection protocols.
+========================================================================== */
+
+:root {
+    --protocol-primary: #1e293b;
+    --protocol-accent: #0f172a;
+    --protocol-bg: #ffffff;
+    --protocol-surface: #D3D3D3;
+    --protocol-border: #111111;
+    --protocol-border-light: #e2e8f0;
+    --protocol-text: #0f172a;
+    --protocol-text-muted: #475569;
+    --font-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --border-radius: 4px;
+}
+
+/* Base & Page Container */
+.protocol {
+    font-family: var(--font-base);
+    color: var(--protocol-text);
+    background-color: var(--protocol-bg);
+    max-width: 210mm;
+    /* A4 width */
+    margin: 5px auto;
+    padding: var(--spacing-lg);
+    box-sizing: border-box;
+    font-size: 11pt;
+    line-height: 1.3;
+}
+
+.protocol *,
+.protocol *::before,
+.protocol *::after {
+    box-sizing: inherit;
+}
+
+/* Header Module */
+.protocol-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* border-bottom: 2px solid var(--protocol-primary); */
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.protocol-branding {
+    display: flex;
+    flex-direction: column;
+}
+
+.protocol-company-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: var(--protocol-primary);
+    margin: 0;
+}
+
+.protocol-metadata-top {
+    font-size: 0.85rem;
+    color: var(--protocol-text-muted);
+    text-align: right;
+}
+
+.protocol-title-wrapper {
+    text-align: center;
+    flex-grow: 1;
+    margin: 0 var(--spacing-md);
+}
+
+.protocol-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    color: var(--protocol-primary);
+}
+
+/* Legend / Key Module */
+.protocol-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    /* Kanske*/
+    gap: var(--spacing-md);
+    /* background: var(--protocol-surface);
+border: 1px solid var(--protocol-border-light); */
+    /* padding: var(--spacing-sm) var(--spacing-md); */
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.legend-key {
+    font-weight: 700;
+    color: var(--protocol-primary);
+}
+
+/* Section Module */
+.protocol-section {
+    border: 1px solid var(--protocol-border);
+    margin-bottom: var(--spacing-xs);
+    background: var(--protocol-bg);
+    overflow: hidden;
+}
+
+
+.column-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-bottom: var(--spacing-xs);
+    background: var(--protocol-bg);
+    overflow: hidden;
+}
+
+.check-data-table {
+    width: 100%;
+    height: 30px;
+    border-collapse: none;
+}
+
+.check-data-table th {
+    border: 1px solid var(--protocol-border);
+    padding: var(--spacing-xs);
+    background-color: var(--protocol-surface);
+    color: var(--protocol-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.025em;
+}
+
+.check-data-table td {
+    border: 1px solid var(--protocol-border);
+    padding: var(--spacing-xs);
+}
+
+.new-section-title {
+    width: 100%;
+    text-align: center;
+    flex-grow: 1;
+    margin: 0px;
+    border: 1px solid var(--protocol-border);
+    background-color: var(--protocol-surface);
+}
+
+.protocol-section-title {
+    background-color: var(--protocol-surface);
+    color: var(--protocol-primary);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: var(--spacing-sm) var(--spacing-md);
+    /* border-bottom: 1px solid var(--protocol-border); */
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.protocol-section-body {
+    padding: var(--spacing-md);
+}
+
+/* Metadata / Anläggningsinformation Table Style (matching image) */
+.metadata-table {
+    width: 100%;
+    border-collapse: collapse;
+    /*none om man vill ha mellanrum mellan varje ruta*/
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.85rem;
+}
+
+.metadata-table th,
+.metadata-table td {
+    border: 1px solid var(--protocol-border);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    vertical-align: top;
+    text-align: left;
+}
+
+.metadata-table th {
+    background-color: var(--protocol-surface);
+    color: var(--protocol-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.025em;
+}
+
+.metadata-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--protocol-text-muted);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.metadata-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--protocol-text);
+    min-height: 1.2rem;
+}
+
+/* Info Grid Module (Metadata: Kund, Site, Anläggning, etc.) ANVÄNDS EJ */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-sm) var(--spacing-md);
+    border: #0f172a solid 1px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-item-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--protocol-text-muted);
+    text-transform: uppercase;
+}
+
+.info-item-value {
+    font-size: 0.95rem;
+    font-weight: 500;
+    /* border-bottom: 1px dotted var(--protocol-border); */
+    padding-bottom: 2px;
+    min-height: 1.4rem;
+}
+
+/*///////////////////////////////////////////////////////////
+
+/* Table / Checklist Module */
+.checklist-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.checklist-table th,
+.checklist-table td {
+    padding: 6px var(--spacing-sm);
+    border-bottom: 1px solid var(--protocol-border-light);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.checklist-table th {
+    background-color: var(--protocol-border-light);
+    font-weight: 700;
+    color: var(--protocol-primary);
+}
+
+.checklist-table tr:nth-child(even) {
+    background-color: rgba(248, 250, 252, 0.5);
+}
+
+/* Checkbox & Status Indicators */
+.status-checks {
+    display: flex;
+    gap: var(--spacing-xs);
+    justify-content: center;
+}
+
+.checkbox-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--protocol-border);
+    border-radius: 2px;
+    background-color: var(--protocol-bg);
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+.checkbox-box--checked {
+    background-color: var(--protocol-primary);
+    color: white;
+    font-weight: bold;
+}
+
+/* Multi-column check grid layout */
+.checks-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--spacing-sm);
+    align-items: center;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--protocol-border-light);
+}
+
+.checks-grid:last-child {
+    border-bottom: none;
+}
+
+.checks-grid-label {
+    font-size: 0.9rem;
+}
+
+.badge-status {
+    display: inline-block;
+    padding: 3px 12px;
+    background-color: var(--protocol-border-light);
+    color: #475569;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    text-align: center;
+}
+
+/* Variant for active/approved status if needed */
+.badge-status--approved {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+/* Variant for warning/failed status if needed */
+.badge-status--failed {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* Footer / Notes Module */
+.protocol-notes {
+    border: 1px solid var(--protocol-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    background: var(--protocol-surface);
+}
+
+.protocol-notes-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+    color: var(--protocol-primary);
+}
+
+.protocol-notes-content {
+    min-height: 60px;
+    font-size: 0.9rem;
+}
+
+/* Print Optimization */
+@media print {
+    body {
+        background: none;
+    }
+
+    .protocol {
+        max-width: 100%;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .protocol-section {
+        break-inside: avoid;
+    }
+}

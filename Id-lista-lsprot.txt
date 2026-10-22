@@ -1,0 +1,67 @@
+Fält	Typ	Id	Fältnamn i rapport	Listalternativ
+Version	Text		<CH.Version>
+Skapad datum	Datum/Text		<CH.Created>
+Checklista klar	X		<CH.Finished>
+Notering	Text		<CH.Note>
+Utförd datum	Datum/Text		<CH.Date>
+Utförd av	Text		<CH.User>
+Status	Text		<CH.Status>
+
+---Kontrollpunkter---
+*** SEKTION: Kontrollschema ***
+     Okulär kontroll	Information	2	<CH.CP2.V>	
+     Okulär kontroll	Information	2	<CH.CP2.V>	
+     Okulär kontroll	Information	2	<CH.CP2.V>	
+     Okulär kontroll	Information	2	<CH.CP2.V>	
+
+     Laddspänning	Information	12	<CH.CP12.V>	
+     Laddspänning	Information	12	<CH.CP12.V>	
+
+     Nätspänning	Information	17	<CH.CP17.V>	
+     Nätspänning	Information	17	<CH.CP17.V>	
+
+     Rengöring	Information	22	<CH.CP22.V>	
+     Rengöring	Information	22	<CH.CP22.V>	
+     Rengöring	Information	22	<CH.CP22.V>	
+     Rengöring	Information	22	<CH.CP22.V>	
+
+     Batteritest Celltron	Information	27	<CH.CP27.V>	
+     Batteritest Celltron	Information	27	<CH.CP27.V>	
+     Batteritest Celltron	Information	27	<CH.CP27.V>	
+     Batteritest Celltron	Information	27	<CH.CP27.V>	
+
+*** SEKTION: Urladdningsprov ***
+     1 min	Kryssruta	279	<CH.CP279.V>	
+     1 min	Kryssruta	279	<CH.CP279.V>	
+     1 min	Kryssruta	279	<CH.CP279.V>	
+
+     5 min	Kryssruta	282	<CH.CP282.V>	
+     5 min	Kryssruta	282	<CH.CP282.V>	
+     5 min	Kryssruta	282	<CH.CP282.V>	
+
+     10 min	Kryssruta	288	<CH.CP288.V>	
+     10 min	Kryssruta	288	<CH.CP288.V>	
+     10 min	Kryssruta	288	<CH.CP288.V>	
+
+     15 min	Kryssruta	291	<CH.CP291.V>	
+     15 min	Kryssruta	291	<CH.CP291.V>	
+     15 min	Kryssruta	291	<CH.CP291.V>	
+
+     Säck	Information	301	<CH.CP301.V>	
+     Säck	Information	301	<CH.CP301.V>	
+
+*** SEKTION: Efter prov ***
+     Termografering	Information	303	<CH.CP303.V>	
+     Termografering	Information	303	<CH.CP303.V>	
+     Termografering	Information	303	<CH.CP303.V>	
+
+     Efterdragning	Information	306	<CH.CP306.V>	
+     Efterdragning	Information	306	<CH.CP306.V>	
+     Efterdragning	Information	306	<CH.CP306.V>	
+     Efterdragning	Information	306	<CH.CP306.V>	
+
+     Infettning av batteripoler	Information	307	<CH.CP307.V>	
+     Infettning av batteripoler	Information	307	<CH.CP307.V>	
+     Infettning av batteripoler	Information	307	<CH.CP307.V>	
+     Infettning av batteripoler	Information	307	<CH.CP307.V>	
+
