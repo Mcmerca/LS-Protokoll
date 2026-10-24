@@ -138,5 +138,6 @@ return {
     getPointStatus,
     isDischargeTestNotSelected,
     isDischargeTestSelected,
-    getAllNotes
+    getAllNotes,
+    getStatusCheckboxes
 }
