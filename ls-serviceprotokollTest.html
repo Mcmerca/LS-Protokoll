@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LS Serviceprotokoll</title>
+
+<style>
+        :root {
+            --protocol-primary: #1e293b;
+            --protocol-accent: #0f172a;
+            --protocol-bg: #ffffff;
+            --protocol-surface: #D3D3D3;
+            --protocol-border: #111111;
+            --protocol-border-light: #e2e8f0;
+            --protocol-text: #0f172a;
+            --protocol-text-muted: #475569;
+            --font-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --border-radius: 4px;
+        }
+
+        .protocol {
+            font-family: var(--font-base);
+            color: var(--protocol-text);
+            background-color: var(--protocol-bg);
+            max-width: 210mm;
+            /* A4 width */
+            margin: 5px auto;
+            padding: var(--spacing-lg);
+            box-sizing: border-box;
+            font-size: 11pt;
+            line-height: 1.3;
+        }
+
+        .protocol *,
+        .protocol *::before,
+        .protocol *::after {
+            box-sizing: inherit;
+        }
+
+        .protocol-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            /* border-bottom: 2px solid var(--protocol-primary); */
+            padding-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .protocol-branding {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .protocol-company-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            color: var(--protocol-primary);
+            margin: 0;
+            height: 100px;
+            width: 150px;
+        }
+
+        .protocol-title-wrapper {
+            text-align: center;
+            flex-grow: 1;
+            margin: 0 var(--spacing-md);
+        }
+
+        .protocol-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+            color: var(--protocol-primary);
+        }
+
+        .protocol-legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: var(--spacing-md);
+            /* background: var(--protocol-surface);
+            border: 1px solid var(--protocol-border-light); */
+            /* padding: var(--spacing-sm) var(--spacing-md); */
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-xs);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .legend-key {
+            font-weight: 700;
+            color: var(--protocol-primary);
+        }
+
+        .protocol-section {
+            border: 1px solid var(--protocol-border);
+            margin-bottom: var(--spacing-xs);
+            background: var(--protocol-bg);
+            overflow: hidden;
+        }
+
+        .column-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            margin-bottom: var(--spacing-xs);
+            background: var(--protocol-bg);
+            overflow: hidden;
+        }
+
+        .check-data-table {
+            width: 100%;
+            height: 30px;
+            border-collapse: none;
+        }
+
+        .check-data-table th {
+            border: 1px solid var(--protocol-border);
+            padding: var(--spacing-xs);
+            background-color: var(--protocol-surface);
+            color: var(--protocol-primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.025em;
+        }
+
+        .check-data-table td {
+            border: 1px solid var(--protocol-border);
+            padding: var(--spacing-xs);
+        }
+
+        .new-section-title {
+            width: 100%;
+            text-align: center;
+            flex-grow: 1;
+            margin: 0px;
+            border: 1px solid var(--protocol-border);
+            background-color: var(--protocol-surface);
+        }
+
+        .metadata-table {
+            width: 100%;
+            border-collapse: collapse;
+            /*none om man vill ha mellanrum mellan varje ruta*/
+            margin-bottom: var(--spacing-xs);
+            font-size: 0.85rem;
+        }
+
+        .metadata-table th,
+        .metadata-table td {
+            border: 1px solid var(--protocol-border);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .metadata-table th {
+            background-color: var(--protocol-surface);
+            color: var(--protocol-primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.025em;
+        }
+
+        .metadata-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--protocol-text-muted);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .metadata-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--protocol-text);
+            min-height: 1.2rem;
+        }
+
+        .checklist-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .checklist-table th,
+        .checklist-table td {
+            padding: 6px var(--spacing-sm);
+            border-bottom: 1px solid var(--protocol-border-light);
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .checklist-table th {
+            background-color: var(--protocol-border-light);
+            font-weight: 700;
+            color: var(--protocol-primary);
+        }
+
+        .checklist-table tr:nth-child(even) {
+            background-color: rgba(248, 250, 252, 0.5);
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .protocol {
+                max-width: 100%;
+                padding: 0;
+                box-shadow: none;
+            }
+
+            .protocol-section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Inkludera JavaScript-biblioteket -->
+    {{#lib = #include("lsProtokoll.js")}}
+
+    <main class="protocol">
+        <header class="protocol-header">
+            <div class="protocol-branding">
+                <img src="/Yuevia_AB_svart_REN_VEKTOR.png" class="protocol-company-name">
+            </div>
+            <div class="protocol-title-wrapper">
+                <span class="protocol-title">Serviceprotokoll LS-System</span>
+            </div>
+        </header>
+
+        <aside class="protocol-legend" aria-label="Teckenförklaring">
+            <div class="legend-item"><span class="legend-key">K</span> = Kontroll</div>
+            <div class="legend-item"><span class="legend-key">J</span> = Justering</div>
+            <div class="legend-item"><span class="legend-key">G</span> = Godkänd</div>
+            <div class="legend-item"><span class="legend-key">X</span> = Ej applicerbart</div>
+            <div class="legend-item"><span class="legend-key">F</span> = Fel</div>
+        </aside>
+
+        <!-- Metadata: Uppdrag & Kund -->
+        <table class="metadata-table">
+            <thead>
+                <tr>
+                    <th colspan="2">Uppdrag</th>
+                    <th>Kund</th>
+                    <th>Anläggning</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="metadata-label">Nr</span>
+                        <span class="metadata-value">{{#Safe(#Document.Task.Nr)}}</span>
+                    </td>
+                    <td>
+                        <span class="metadata-label">Kontaktperson / Telefon</span>
+                        <span class="metadata-value">{{#Safe(#Document.Task.CustomerContact.Name)}} <br> {{#Safe(#Document.Task.CustomerContact.Phone)}}</span>
+                    </td>
+                    <td>
+                        <span class="metadata-label">Namn</span>
+                        <span class="metadata-value">{{#Safe(#Document.Customer.Name)}}</span>
+                    </td>
+                    <td>
+                        <span class="metadata-label">Namn</span>
+                        <span class="metadata-value">{{#Safe(#Document.Object1.Name)}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Maskindata -->
+        <table class="metadata-table">
+            <thead>
+                <tr>
+                    <th colspan="4">Aggregat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="metadata-label">Datafält</span>
+                        <span class="metadata-value">Datafält</span>
+                    </td>
+                    <td>
+                        <span class="metadata-label">Datafält</span>
+                        <span class="metadata-value">Datafält</span>
+                    </td>
+                    <td>
+                        <span class="metadata-label">Datafält</span>
+                        <span class="metadata-value">Datafält</span>
+                    </td>
+                    <td>
+                        <span class="metadata-label">Datafält</span>
+                        <span class="metadata-value">Datafält</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        {{#Section = #Document.GetSection("1")}}
+        <section>
+            <h2 class="new-section-title">Kontroll innan start</h2>
+            <div class="column-section">
+                <!-- Vänster tabell: K J G X F rutor -->
+                <table class="check-data-table">
+                    <thead>
+                        <tr>
+                            <th>Kontrollschema</th>
+                            <th>K J G X F</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Okulär kontroll</td>
+                            <td>{{#lib.getStatusCheckboxes(#Section.GetPoint(2))}}</td>
+                        </tr>
+                        <tr>
+                            <td>Rengöring</td>
+                            <td>{{#lib.getStatusCheckboxes(#Section.GetPoint(22))}}</td>
+                        </tr>
+                        <tr>
+                            <td>Resistansmätning batterier</td>
+                            <td>{{#lib.getStatusCheckboxes(#Section.GetPoint(27))}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <table class="check-data-table">
+                    <thead>
+                        <tr>
+                            <th>Kontrollschema</th>
+                            <th>Värde</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#resLadd = #lib.getPointStatus(#Section.GetPoint(12))}}
+                        {{foreach #item in #resLadd}}
+                        <tr>
+                            <td>Laddspänning</td>
+                            <td>{{#Safe(#Section.GetPoint(16).Value)}} VDC</td>
+                        </tr>
+                        {{end}}
+
+                        {{#resNet = #lib.getPointStatus(#Section.GetPoint(17))}}
+                        {{foreach #item in #resNet}}
+                        <tr>
+                            <td>Nätspänning</td>
+                            <td>{{#Safe(#Section.GetPoint(19).Value)}} VAC</td>
+                        </tr>
+                        {{end}}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Sektion 1: Urladdningsprov (Dynamiskt: Visas om utfört, annars noteringsfält) -->
+        <section>
+            <h2 class="new-section-title">Urladdningsprov</h2>
+
+            <!-- A. Om provet ÄR utfört -->
+            {{#resYes = #lib.isDischargeTestSelected(#Document.Sections[2])}}
+            {{foreach #item in #resYes}}
+            <div class="protocol-section">
+                <table class="checklist-table">
+                    <thead>
+                        <tr>
+                            <th>Tid efter start</th>
+                            <th>Genomförande</th>
+                            <th>Batterispänning (VDC)</th>
+                            <th>Urladdningsström (A)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1 minut</td>
+                            <td>{{#lib.getStatusCheckboxes(#Section.GetPoint(279))}}</td>
+                            <td>{{#Safe(#Section.GetPoint(286).Value)}}</td>
+                            <td>{{#Safe(#Section.GetPoint(287).Value)}}</td>
+                        </tr>
+                        <tr>
+                            <td>5 minut</td>
+                            <td>{{#lib.getStatusCheckboxes(#Section.GetPoint(282))}}</td>
+                            <td>{{#Safe(#Section.GetPoint(283).Value)}}</td>
+                            <td>{{#Safe(#Section.GetPoint(284).Value)}}</td>
+                        </tr>
+                        <tr>
+                            <td>10 minut</td>
+                            <td>{{#lib.getStatusCheckboxes(#Section.GetPoint(288))}}</td>
+                            <td>{{#Safe(#Section.GetPoint(289).Value)}}</td>
+                            <td>{{#Safe(#Section.GetPoint(290).Value)}}</td>
+                        </tr>
+                        <tr>
+                            <td>15 minut</td>
+                            <td>{{#lib.getStatusCheckboxes(#Section.GetPoint(291))}}</td>
+                            <td>{{#Safe(#Section.GetPoint(292).Value)}}</td>
+                            <td>{{#Safe(#Section.GetPoint(293).Value)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {{end}}
+
+            <!-- B. Om provet INTE är utfört (Visar anledning/anteckning) -->
+            {{#resNo = #lib.isDischargeTestNotSelected(#Document.Sections[2])}}
+            {{foreach #item in #resNo}}
+            <div class="protocol-section" style="padding: 10px;">
+                <p><strong>Urladdningsprov har ej utförts.</strong></p>
+                <p><em>Orsak / Anteckning:</em><br>
+                {{#Safe(#Section.GetPoint(38).Note)}}</p>   <!-- Behöver kolla över denna -->
+            </div>
+            {{end}}
+        </section>
+
+        <!-- Sektion 2: Kontroll efter prov -->
+        <section>
+            <h2 class="new-section-title">Kontroll efter prov</h2>
+            <div class="column-section">
+                <table class="check-data-table">
+                    <thead>
+                        <tr>
+                            <th>Kontrollpunkt</th>
+                            <th>K J G X F</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Efterdragning</td>
+                            <td>{{#lib.getStatusCheckboxes(#Section.GetPoint(303))}}</td>
+                        </tr>
+                        <tr>
+                            <td>Infettning av batteripoler</td>
+                            <td>{{#lib.getStatusCheckboxes(#Section.GetPoint(307))}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="check-data-table">
+                    <thead>
+                        <tr>
+                            <th>Kontrollpunkt</th>
+                            <th>Värde</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Termografering Batterier</td>
+                            <td>{{#Safe(#Section.GetPoint(304).Value)}} °C</td>
+                        </tr>
+                        <tr>
+                            <td>Termografering Likriktare</td>
+                            <td>{{#Safe(#Section.GetPoint(305).Value)}} °C</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Samlade Noteringar -->
+        <section>
+            <h2 class="new-section-title">Noteringar</h2>
+            <table class="check-data-table">
+                <thead>
+                    <tr>
+                        <th width="35%">Sektion / Punkt</th>
+                        <th width="65%">Notering</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#notes = #lib.getAllNotes(#Document)}}
+                    {{foreach #note in #notes}}
+                    <tr>
+                        <td>{{#Safe(#note[0])}} / {{#Safe(#note[1])}}</td>
+                        <td>{{#Safe(#note[2])}}</td>
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Signatur / Footer -->
+        <table width="100%" class="check-data-table" style="margin-top: 15px;">
+            <tr>
+                <td width="50%">
+                    <span class="metadata-label">Datum</span>
+                    <span class="metadata-value"><CH.Date></span>
+                </td>
+                <td width="50%">
+                    <span class="metadata-label">Utförd av</span>
+                    <span class="metadata-value"><CH.User></span>
+                </td>
+            </tr>
+        </table>
+
+    </main>
+    <script src="lsProtokoll.js"></script>
+</body>
+
+</html>
